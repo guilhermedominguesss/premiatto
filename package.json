@@ -1,0 +1,14 @@
+{
+  "name": "premiatto-catalogo",
+  "version": "1.0.0",
+  "description": "Catálogo digital de kits semanais da Premiatto Casa de Carnes Angus (site estático: HTML, CSS e JS puro).",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve@14 . -l 3000",
+    "build": "echo \"Site estático: nada para compilar.\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

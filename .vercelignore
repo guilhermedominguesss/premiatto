@@ -1,0 +1,5 @@
+# Arquivos do projeto que não precisam ir para o site publicado
+tools/
+img/README.txt
+img/logopremi.jpeg
+README.md
