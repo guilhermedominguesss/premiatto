@@ -212,6 +212,23 @@ const KITS_HAMBURGUER = [
     foto: "img/kit-hamburguer.jpg",
     badge: "",
     destaque: false
+  },
+  {
+    id: "hamburguer-fraldinha",
+    nome: "Kit Hambúrguer de Fraldinha",
+    subtitulo: "",
+    preco: 75.90,
+    especificacao: "6 hambúrgueres · 150g cada",
+    porUnidade: { quantidade: 6, nome: "hambúrguer" },
+    itens: [
+      "6 pães",
+      "12 fatias de bacon",
+      "12 fatias de queijo cheddar ou prato",
+      "6 hambúrgueres de fraldinha com 150g"
+    ],
+    foto: "img/kit-hamburguer.jpg",
+    badge: "",
+    destaque: false
   }
 ];
 

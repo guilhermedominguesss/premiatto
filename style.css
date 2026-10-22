@@ -701,28 +701,13 @@ ol, ul { list-style: none; }
 @media (min-width: 960px) {
   :root { --nav-h: 72px; }
 
-  /* O nome "Premiatto" na barra fica oculto para caber todas as abas
-     (a logo já aparece no topo da página). */
+  /* A barra mostra só as abas dos kits, para caberem todas
+     (a logo fica no topo da página e o pedido, no botão flutuante). */
   .kitnav__track { margin-inline: 0; }
   /* centraliza sem cortar o início quando não couber */
   .kitnav__track > :first-child { margin-left: auto; }
   .kitnav__track > :last-child { margin-right: auto; }
   .chip { padding: 0 15px; }
-  .kitnav__cta {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 0 18px;
-    border: 1px solid var(--linha-forte);
-    border-radius: var(--raio-sm);
-    font: 600 .6875rem/1 var(--sans);
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ouro-claro);
-    transition: border-color .3s, color .3s;
-  }
-  .kitnav__cta:hover { border-color: var(--ouro); color: var(--branco); }
 
   .kits { gap: 56px; }
 
