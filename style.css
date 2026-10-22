@@ -293,6 +293,14 @@ ol, ul { list-style: none; }
   transition: color .3s, border-color .3s, background-color .3s;
 }
 @media (hover: hover) { .chip:hover { color: var(--branco); border-color: var(--linha-forte); } }
+.kitnav__sep {
+  flex: none;
+  align-self: center;
+  width: 1px;
+  height: 22px;
+  margin-inline: 4px;
+  background: var(--linha);
+}
 .chip.is-active {
   color: var(--ouro-claro);
   border-color: var(--ouro);
@@ -470,6 +478,35 @@ ol, ul { list-style: none; }
   background: var(--ouro);
   transform: rotate(45deg);
 }
+/* Acompanhamentos do kit (carvão, pão de alho...) */
+.extras {
+  padding: 14px 16px;
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-sm);
+  background: color-mix(in srgb, var(--ouro) 6%, transparent);
+}
+.extras__label {
+  margin-bottom: 6px;
+  font: 600 .625rem/1 var(--sans);
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--ouro);
+}
+.extras li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: .9375rem;
+}
+.extras li::before {
+  content: "+";
+  flex: none;
+  width: 12px;
+  font: 500 1.125rem/1 var(--serif);
+  color: var(--ouro-claro);
+}
+
 .tag-angus {
   flex: none;
   margin-left: auto;
@@ -524,6 +561,8 @@ ol, ul { list-style: none; }
 /* ==========================================================================
    COMO PEDIR
    ========================================================================== */
+.section--churrasco { border-top: 1px solid var(--linha-suave); }
+
 .section--steps {
   border-top: 1px solid var(--linha-suave);
   background: linear-gradient(180deg, #0E0E0E, var(--preto));
@@ -662,7 +701,11 @@ ol, ul { list-style: none; }
     text-decoration: none;
     color: var(--ouro-claro);
   }
-  .kitnav__track { justify-content: center; margin: 0; padding: 0; -webkit-mask-image: none; mask-image: none; }
+  .kitnav__track { margin: 0; padding: 0; -webkit-mask-image: none; mask-image: none; }
+  /* centraliza sem cortar o início quando não couber */
+  .kitnav__track > :first-child { margin-left: auto; }
+  .kitnav__track > :last-child { margin-right: auto; }
+  .chip { padding: 0 15px; }
   .kitnav__cta {
     display: inline-flex;
     align-items: center;

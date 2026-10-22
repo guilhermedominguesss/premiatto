@@ -13,6 +13,9 @@ Coloque nesta pasta os arquivos com EXATAMENTE estes nomes:
   kit-4.jpg   Foto do Kit Semanal 4
   kit-5.jpg   Foto do Kit Fit da Semana (Kit 5)
 
+  kit-churrasco-1.jpg   Foto do Kit Churrasco 1
+  kit-churrasco-2.jpg   Foto do Kit Churrasco 2
+
 DICAS PARA AS FOTOS DOS KITS
   - Formato horizontal, proporção 3:2 (ex.: 1500 x 1000 px).
     A foto é recortada automaticamente para caber, mas o centro precisa

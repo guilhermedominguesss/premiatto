@@ -64,6 +64,7 @@ function kitHTML(kit, i) {
   const mensagem = MSG_KIT.replace("{nome}", kit.nome).replace("{preco}", numero.format(kit.preco));
   const classes = ["kit", "reveal", kit.destaque ? "kit--destaque" : ""].join(" ").trim();
   const itens = kit.itens || [];
+  const extras = kit.extras || [];
 
   return `
   <article class="${classes}" id="kit-${escapeHTML(kit.id)}" aria-labelledby="kit-${escapeHTML(kit.id)}-nome">
@@ -96,6 +97,12 @@ function kitHTML(kit, i) {
         <ul class="items">${itens.map(itemHTML).join("")}</ul>
       </div>
 
+      ${extras.length ? `
+      <div class="extras">
+        <p class="extras__label">Acompanha</p>
+        <ul>${extras.map((x) => `<li>${escapeHTML(x)}</li>`).join("")}</ul>
+      </div>` : ""}
+
       <a class="btn btn--ouro btn--block" href="${linkWhatsApp(mensagem)}" target="_blank" rel="noopener">
         <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
         Pedir este kit
@@ -106,14 +113,27 @@ function kitHTML(kit, i) {
 
 /* ---------- Renderização ---------- */
 function renderizar() {
-  const kits = typeof KITS !== "undefined" ? KITS : [];
   const passos = typeof COMO_PEDIR !== "undefined" ? COMO_PEDIR : [];
 
-  $("#kits-lista").innerHTML = kits.map(kitHTML).join("");
+  // Cada grupo vira uma seção da página e um conjunto de botões na barra do topo
+  const grupos = [
+    { lista: "#kits-lista", rotulo: "Kit", kits: typeof KITS !== "undefined" ? KITS : [] },
+    { lista: "#churrasco-lista", rotulo: "Churrasco", kits: typeof KITS_CHURRASCO !== "undefined" ? KITS_CHURRASCO : [] }
+  ];
 
-  $("#kitnav-track").innerHTML = kits
-    .map((kit, i) => `<a class="chip" href="#kit-${escapeHTML(kit.id)}" data-alvo="kit-${escapeHTML(kit.id)}">Kit ${i + 1}</a>`)
-    .join("");
+  grupos.forEach((g) => {
+    const lista = $(g.lista);
+    if (lista) lista.innerHTML = g.kits.map(kitHTML).join("");
+    if (lista && !g.kits.length) lista.closest("section").hidden = true;
+  });
+
+  $("#kitnav-track").innerHTML = grupos
+    .filter((g) => g.kits.length)
+    .map((g) =>
+      g.kits
+        .map((kit, i) => `<a class="chip" href="#kit-${escapeHTML(kit.id)}" data-alvo="kit-${escapeHTML(kit.id)}">${g.rotulo} ${i + 1}</a>`)
+        .join(""))
+    .join(`<span class="kitnav__sep" aria-hidden="true"></span>`);
 
   $("#passos-lista").innerHTML = passos
     .map((p, i) => `

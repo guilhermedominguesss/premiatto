@@ -13,6 +13,8 @@
      gramasPorBandeja -> peso de cada bandeja, em gramas
      itens            -> lista de cortes, um por linha. Itens com "Angus" no nome
                          ganham automaticamente o selo ANGUS.
+     extras           -> (opcional) o que acompanha o kit além das bandejas
+                         (ex.: carvão, pão de alho). Aparece em destaque abaixo da lista.
      foto             -> caminho da foto (veja img/README.txt). Se a foto não existir,
                          aparece um fundo elegante com a logo, sem imagem quebrada.
      badge            -> (opcional) selo sobre a foto. Ex.: "FIT", "NOVO", "MAIS PEDIDO".
@@ -24,7 +26,7 @@ const KITS = [
     id: 1,
     nome: "Kit Semanal 1",
     subtitulo: "",
-    preco: 249.90, // <- PREÇO
+    preco: 289.90, // <- PREÇO
     bandejas: 10,
     gramasPorBandeja: 600,
     itens: [
@@ -47,7 +49,7 @@ const KITS = [
     id: 2,
     nome: "Kit Semanal 2",
     subtitulo: "",
-    preco: 182.90,
+    preco: 183.90,
     bandejas: 8,
     gramasPorBandeja: 500,
     itens: [
@@ -68,7 +70,7 @@ const KITS = [
     id: 3,
     nome: "Kit Semanal 3",
     subtitulo: "",
-    preco: 106.90,
+    preco: 108.90,
     bandejas: 5,
     gramasPorBandeja: 600,
     itens: [
@@ -86,7 +88,7 @@ const KITS = [
     id: 4,
     nome: "Kit Semanal 4",
     subtitulo: "",
-    preco: 152.90,
+    preco: 156.90,
     bandejas: 5,
     gramasPorBandeja: 600,
     itens: [
@@ -104,7 +106,7 @@ const KITS = [
     id: 5,
     nome: "Kit Fit da Semana",
     subtitulo: "Kit Semanal 5",
-    preco: 129.90,
+    preco: 135.90,
     bandejas: 5,
     gramasPorBandeja: 500,
     itens: [
@@ -117,6 +119,55 @@ const KITS = [
     foto: "img/kit-5.jpg",
     badge: "FIT",
     destaque: true
+  }
+];
+
+/* --------------------------------------------------------------------------
+   KITS CHURRASCO — mesmos campos dos kits semanais
+   -------------------------------------------------------------------------- */
+const KITS_CHURRASCO = [
+  {
+    id: "churrasco-1",
+    nome: "Kit Churrasco 1",
+    subtitulo: "",
+    preco: 304.90, // <- PREÇO
+    bandejas: 10,
+    gramasPorBandeja: 600,
+    itens: [
+      "Bife de chorizo Angus",
+      "Miolo de alcatra Angus",
+      "Linguiça TC Belvedere",
+      "Ancho suíno",
+      "Tulipa na mostarda",
+      "Filé da coxa",
+      "Costela borboleta Angus",
+      "Bife de Ancho Angus",
+      "Medalhão suíno",
+      "Picanha suína"
+    ],
+    extras: ["1 carvão 4kg"],
+    foto: "img/kit-churrasco-1.jpg", // <- FOTO
+    badge: "",
+    destaque: false
+  },
+  {
+    id: "churrasco-2",
+    nome: "Kit Churrasco 2",
+    subtitulo: "",
+    preco: 152.90,
+    bandejas: 5,
+    gramasPorBandeja: 600,
+    itens: [
+      "Tulipa temperada",
+      "Panceta suína temperada",
+      "Linguiça TC",
+      "Bife de chorizo temperado",
+      "Bife de Ancho temperado"
+    ],
+    extras: ["1 pão de alho Santa Massa 400g"],
+    foto: "img/kit-churrasco-2.jpg",
+    badge: "",
+    destaque: false
   }
 ];
 
