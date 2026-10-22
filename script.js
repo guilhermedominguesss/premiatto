@@ -60,7 +60,13 @@ function itemHTML(item) {
 function kitHTML(kit, i) {
   const num = String(i + 1).padStart(2, "0");
   const bandejas = Number(kit.bandejas) || 0;
-  const porBandeja = bandejas ? moeda.format(kit.preco / bandejas) : "";
+  // Preço por unidade: por bandeja ou, se informado, por outra unidade (ex.: por hambúrguer)
+  const unidade = kit.porUnidade || (bandejas ? { quantidade: bandejas, nome: "bandeja" } : null);
+  const precoUnidade = unidade && unidade.quantidade ? moeda.format(kit.preco / unidade.quantidade) : "";
+  // Linha de especificação: texto livre ou "10 bandejas · 600g cada"
+  const especificacao = kit.especificacao
+    ? escapeHTML(kit.especificacao).replace(/ · /g, ` <span class="specs__sep">·</span> `)
+    : `${bandejas} bandejas <span class="specs__sep">·</span> ${escapeHTML(kit.gramasPorBandeja)}g cada`;
   const mensagem = MSG_KIT.replace("{nome}", kit.nome).replace("{preco}", numero.format(kit.preco));
   const classes = ["kit", "reveal", kit.destaque ? "kit--destaque" : ""].join(" ").trim();
   const itens = kit.itens || [];
@@ -78,18 +84,19 @@ function kitHTML(kit, i) {
 
     <div class="kit__media${kit.foto ? "" : " is-empty"}">
       ${kit.badge ? `<span class="badge">${escapeHTML(kit.badge)}</span>` : ""}
-      ${kit.foto ? `<img class="kit__img" src="${escapeHTML(kit.foto)}" alt="Bandejas do ${escapeHTML(kit.nome)}" loading="lazy" decoding="async" width="1200" height="800">` : ""}
+      ${kit.foto ? `<img class="kit__img" src="${escapeHTML(kit.foto)}" alt="Foto do ${escapeHTML(kit.nome)}" loading="lazy" decoding="async" width="1200" height="800">` : ""}
     </div>
 
     <div class="kit__body">
       <div>
+        ${kit.precoDe ? `<p class="price-from">de <s>${moeda.format(kit.precoDe)}</s> por</p>` : ""}
         <p class="price" aria-label="Preço: ${moeda.format(kit.preco)}">${precoHTML(kit.preco)}</p>
-        ${porBandeja ? `<p class="per-tray">ou <strong>${porBandeja}</strong> por bandeja</p>` : ""}
+        ${precoUnidade ? `<p class="per-tray">ou <strong>${precoUnidade}</strong> por ${escapeHTML(unidade.nome)}</p>` : ""}
       </div>
 
       <p class="specs">
-        <svg class="icon" aria-hidden="true"><use href="#i-bandeja"></use></svg>
-        <span>${bandejas} bandejas <span class="specs__sep">·</span> ${escapeHTML(kit.gramasPorBandeja)}g cada</span>
+        <svg class="icon" aria-hidden="true"><use href="#i-${bandejas ? "bandeja" : "hamburguer"}"></use></svg>
+        <span>${especificacao}</span>
       </p>
 
       <div>
@@ -118,7 +125,8 @@ function renderizar() {
   // Cada grupo vira uma seção da página e um conjunto de botões na barra do topo
   const grupos = [
     { lista: "#kits-lista", rotulo: "Kit", kits: typeof KITS !== "undefined" ? KITS : [] },
-    { lista: "#churrasco-lista", rotulo: "Churrasco", kits: typeof KITS_CHURRASCO !== "undefined" ? KITS_CHURRASCO : [] }
+    { lista: "#churrasco-lista", rotulo: "Churrasco", kits: typeof KITS_CHURRASCO !== "undefined" ? KITS_CHURRASCO : [] },
+    { lista: "#hamburguer-lista", rotulo: "Hambúrguer", kits: typeof KITS_HAMBURGUER !== "undefined" ? KITS_HAMBURGUER : [] }
   ];
 
   grupos.forEach((g) => {

@@ -172,6 +172,50 @@ const KITS_CHURRASCO = [
 ];
 
 /* --------------------------------------------------------------------------
+   KITS HAMBÚRGUER — não são em bandejas, então usam campos próprios:
+     especificacao -> texto da linha de especificação (use " · " para separar)
+     porUnidade    -> calcula "ou R$ X por ..." (quantidade e nome da unidade)
+     precoDe       -> (opcional) preço antigo, exibido riscado: "de R$ 66,90 por"
+   -------------------------------------------------------------------------- */
+const KITS_HAMBURGUER = [
+  {
+    id: "hamburguer-promocao",
+    nome: "Kit Hambúrguer Promoção",
+    subtitulo: "De segunda a quarta",
+    preco: 56.90, // <- PREÇO
+    precoDe: 66.90,
+    especificacao: "6 hambúrgueres · 150g cada",
+    porUnidade: { quantidade: 6, nome: "hambúrguer" },
+    itens: [
+      "6 pães",
+      "12 fatias de bacon",
+      "12 fatias de queijo cheddar ou prato",
+      "6 hambúrgueres de costela com 150g"
+    ],
+    foto: "img/kit-hamburguer.jpg", // <- FOTO
+    badge: "PROMOÇÃO",
+    destaque: false
+  },
+  {
+    id: "hamburguer",
+    nome: "Kit Hambúrguer",
+    subtitulo: "De quarta a domingo",
+    preco: 66.90,
+    especificacao: "6 hambúrgueres · 150g cada",
+    porUnidade: { quantidade: 6, nome: "hambúrguer" },
+    itens: [
+      "6 pães",
+      "12 fatias de bacon",
+      "12 fatias de queijo cheddar ou prato",
+      "6 hambúrgueres de costela com 150g"
+    ],
+    foto: "img/kit-hamburguer.jpg",
+    badge: "",
+    destaque: false
+  }
+];
+
+/* --------------------------------------------------------------------------
    COMO PEDIR — os 3 passos exibidos no fim da página (textos editáveis)
    -------------------------------------------------------------------------- */
 const COMO_PEDIR = [

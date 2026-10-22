@@ -434,6 +434,13 @@ ol, ul { list-style: none; }
 .price__cur { align-self: flex-start; margin-top: .3em; font-size: 1.125rem; font-weight: 500; }
 .price__int { font-size: 3.125rem; font-weight: 600; letter-spacing: -.01em; }
 .price__dec { font-size: 1.5rem; font-weight: 600; }
+.price-from {
+  margin-bottom: 8px;
+  font-size: .8125rem;
+  letter-spacing: .02em;
+  color: var(--texto-suave);
+}
+.price-from s { text-decoration-color: var(--ouro); text-decoration-thickness: 1px; }
 .per-tray { margin-top: 10px; font-size: .875rem; color: var(--texto-suave); }
 .per-tray strong { font-weight: 500; color: var(--branco); }
 
@@ -694,14 +701,9 @@ ol, ul { list-style: none; }
 @media (min-width: 960px) {
   :root { --nav-h: 72px; }
 
-  .kitnav__brand {
-    display: block;
-    font: 500 1.25rem/1 var(--serif);
-    letter-spacing: .04em;
-    text-decoration: none;
-    color: var(--ouro-claro);
-  }
-  .kitnav__track { margin: 0; padding: 0; -webkit-mask-image: none; mask-image: none; }
+  /* O nome "Premiatto" na barra fica oculto para caber todas as abas
+     (a logo já aparece no topo da página). */
+  .kitnav__track { margin-inline: 0; }
   /* centraliza sem cortar o início quando não couber */
   .kitnav__track > :first-child { margin-left: auto; }
   .kitnav__track > :last-child { margin-right: auto; }
